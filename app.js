@@ -13,7 +13,7 @@ squares.forEach(square => {
     square.addEventListener("dragover",dragOver)
     square.addEventListener("dragenter",dragEnter)
     square.addEventListener("dragleave",dragLeave)
-    square.addEventListener("drop",drop)
+    square.addEventListener("drop",dragDrop)
     square.addEventListener("dragend",dragEnd)
 })
 
@@ -23,11 +23,12 @@ console.log(e.target.id + " is being dragged");
 }
 
 function dragStart(e){
-    beignDragged = e.target;
-    console.log("dragging has started on "+ beignDragged);
-    infoDisplay.textContent = beignDragged.id + " is beign dragged";
+    beingDragged = e.target;
+    console.log("dragging has started on "+ beingDragged);
+    infoDisplay.textContent = beingDragged.id + " is beign dragged";
 }
 function dragOver(e){
+    e.preventDefault();
     console.log("You are dragging something over "+ e.target.classList)
 }
 function dragEnter(e){
@@ -39,6 +40,7 @@ function dragLeave(e){
 }
 
 function dragDrop(e){
+    e.target.append(beingDragged)
     console.log("You have dropped something into "+ e.target.classList)
 }
 
